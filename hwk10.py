@@ -1,4 +1,4 @@
-# Name:  - your name (and your partners name) <br>
+# Name:  - Tanya Chen & Emily Wang
 # Peers:  - names of CSC252 students who you consulted or ``N/A'' <br>
 # References:  - URL of resources used <br>
 from random import randint
