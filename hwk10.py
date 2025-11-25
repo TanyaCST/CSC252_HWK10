@@ -1,7 +1,7 @@
 # Name:  - Tanya Chen & Emily Wang
 # Peers:  - names of CSC252 students who you consulted or ``N/A'' <br>
 # References:  - https://www.geeksforgeeks.org/dsa/understanding-the-coin-change-problem-with-dynamic-programming/
-# from random import randint
+from random import randint
 
 ### Part 1: Lumber Mill
 # def lumberSelection(prices:list, n:int) -> float:
@@ -11,6 +11,12 @@
 reversed_denomination = [100, 50, 20, 10, 5, 2, 1] 
 
 def find_combo(remaining: int, index: int, combo_str: str) -> None: 
+    """ Prints of all the combinations of dollars to use for a specific value
+    :param remaining: (int) The remining amount of dollar need to be determined with combos of dollars
+    :param index: (int) The index of the corresponding dollar in reversed_denomination 
+    :param combo_str: (int) The combination of dollars 
+    >>> 
+    """
     if remaining == 0: 
         print(combo_str) 
         return 
@@ -20,7 +26,7 @@ def find_combo(remaining: int, index: int, combo_str: str) -> None:
     d = reversed_denomination[index] 
     max_count = remaining // d 
 
-    for c in range(max_count, -1, -1): #stops at -1, works at 0 
+    for c in range(max_count, -1, -1): #stops at -1, also needs to multiply 0
         if c > 0: 
             new_combo_str = combo_str + str(c) + "*$" + str(d) + " " 
         else: 
@@ -30,12 +36,22 @@ def find_combo(remaining: int, index: int, combo_str: str) -> None:
 
 
 def calcPermutations(val: int) -> None:
+    """Prints of all the combinations of dollars to use for a specific value
+    :param val: (int) The value need to be determined with combos of dollars
+    >>> calcPermutations(4)
+    2*$2 
+    1*$2 2*$1 
+    4*$1 
+
+    """
     # I know we should not use a helper function like this
     # But I have no idea how to use recursion by just keeping track of the value
     find_combo(val, 0, "")
     print()
 
-def new_array(size: int):
+
+
+def new_array(size: int) -> list[int]:
     """ Creates a new array of a given size.
     :param size: (int) the number of 0s you want in the array
     :return : (list) the array with zeros 
@@ -46,6 +62,14 @@ def new_array(size: int):
     return L
 
 def getNumberOfWays(change_amount:int, bill_list:list[int]) -> int:
+    """ This calculates the number of combinations we can get for this change
+    :param change_amount: (int) The value you want to find the combinations of dollars
+    :param bill_list: (list[int]) A list of possible dollar values
+    :return: (int) The number of combinations we can get for this change_amount
+    >>> bills = [1, 2, 5, 10, 20, 50, 100]
+    >>>  print(getNumberOfWays(4, bills))
+    3
+    """
     ways = new_array(change_amount + 1)
 
     ways[0] = 1
@@ -68,12 +92,11 @@ def main():
     # print("The max value for " + str(size) + " feet is $" + str(lumberSelection(lumber_prices, size)))
     
     bills = [1, 2, 5, 10, 20, 50, 100]
-    # change = randint(1, 100)
-    # print("For $" + str(change) + " there are " + str(getNumberOfWays(6, bills)) + " combinations.")
+    change = randint(1, 100)
+    print("For $" + str(change) + " there are " + str(getNumberOfWays(change, bills)) + " combinations.")
 
     print(getNumberOfWays(4, bills))
-    # print(find_smaller(4))
-    #calcPermutations(4)
+    calcPermutations(4)
     # calcPermutations(12)
 
 if __name__ == '__main__': 
