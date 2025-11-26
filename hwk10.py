@@ -98,6 +98,7 @@ def main():
     print(getNumberOfWays(4, bills))
     calcPermutations(4)
     # calcPermutations(12)
+    
 
 if __name__ == '__main__': 
     main()
