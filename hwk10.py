@@ -12,6 +12,10 @@ def lumberSelection(prices:list[float], n:int) -> float:
 					index 0 = length 1
     :param n: (int) the total length of board we will cut
     : return: (float) the optimal price 
+    
+    >>> lumber_prices = [0.25, 1.45, 0, 3.58, 0, 4.4, 0, 5.18, 0, 6.58, 0, 8.28]
+    >>> print("The max value for 3 feet is $" + str(lumberSelection(lumber_prices, 3)))
+    The max value for 3 feet is $1.7
     """
     # The index starts from 0, so the total length is n+1 so that the index matches to length
     perm:list[float] = [0.0]*(n+1)
