@@ -15,6 +15,9 @@ def lumberSelection(prices:list[float], n:int) -> float:
     """
     # The index starts from 0, so the total length is n+1 so that the index matches to length
     perm:list[float] = [0.0]*(n+1)
+    
+	# Keep track of the best price we can obtain
+    max_price = 0.0
 
 	# Loop through perm in order to add every max price into corresponding index
     for i in range(n+1):
@@ -22,13 +25,10 @@ def lumberSelection(prices:list[float], n:int) -> float:
         if i == 0:
             perm[i] = 0.0
         else:
-			# Keep track of the best price we can obtain
-            max_price = 0.0
-            
 			# Loop through each available length based on current index
             length = 1
             while length <= i and length <= len(prices):
-                current_price = prices[i-1] + perm[i-length]
+                current_price = prices[length-1] + perm[i-length]
         
                 # Find the maximum between max stored and current price
                 if max_price < current_price:
@@ -37,8 +37,8 @@ def lumberSelection(prices:list[float], n:int) -> float:
 				# Update length
                 length += 1
                 
-				# Update the table
-                perm[i] = max_price
+			# Update the table
+            perm[i] = max_price
                 
     return perm[n]
 
@@ -58,9 +58,23 @@ def main():
     size = randint(1,len(lumber_prices))
     print("The max value for " + str(size) + " feet is $" + str(lumberSelection(lumber_prices, size)))
     
-    bills = [1, 2, 5, 10, 20, 50, 100]
-    change = randint(1, 100)
-    print("For $" + str(change) + " there are " + str(getNumberOfWays(6, bills)) + " combinations.")
+	# More tests
+    # print("The max value for 1 feet is $" + str(lumberSelection(lumber_prices, 1)))
+    # print("The max value for 2 feet is $" + str(lumberSelection(lumber_prices, 2)))
+    # print("The max value for 3 feet is $" + str(lumberSelection(lumber_prices, 3)))
+    # print("The max value for 4 feet is $" + str(lumberSelection(lumber_prices, 4)))
+    # print("The max value for 5 feet is $" + str(lumberSelection(lumber_prices, 5)))
+    # print("The max value for 6 feet is $" + str(lumberSelection(lumber_prices, 6)))
+    # print("The max value for 7 feet is $" + str(lumberSelection(lumber_prices, 7)))
+    # print("The max value for 8 feet is $" + str(lumberSelection(lumber_prices, 8)))
+    # print("The max value for 9 feet is $" + str(lumberSelection(lumber_prices, 9)))
+    # print("The max value for 10 feet is $" + str(lumberSelection(lumber_prices, 10)))
+    # print("The max value for 11 feet is $" + str(lumberSelection(lumber_prices, 11)))
+    # print("The max value for 12 feet is $" + str(lumberSelection(lumber_prices, 12)))
+    
+    # bills = [1, 2, 5, 10, 20, 50, 100]
+    # change = randint(1, 100)
+    # print("For $" + str(change) + " there are " + str(getNumberOfWays(6, bills)) + " combinations.")
 
 if __name__ == '__main__': 
     main()
